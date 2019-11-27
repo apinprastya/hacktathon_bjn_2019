@@ -15,6 +15,7 @@ class StateUser with ChangeNotifier {
   Stream<QuerySnapshot> pelatihanOpen;
   PelatihanModel pelatihan;
   Stream<QuerySnapshot> myPelatihan;
+  Stream<QuerySnapshot> openJobs;
 
   Future<void> loadUserProfile() async {
     if (inited) return;
@@ -67,5 +68,12 @@ class StateUser with ChangeNotifier {
     await ref.setData(pelatihan.toJson(), merge: true);
     saving = false;
     notifyListeners();
+  }
+
+  initOpenJob() {
+    openJobs = Firestore.instance
+        .collection('jobs')
+        .where('date_close', isGreaterThan: Timestamp.now())
+        .snapshots();
   }
 }

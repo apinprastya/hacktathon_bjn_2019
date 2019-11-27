@@ -54,7 +54,7 @@ class _PageSplashState extends State<PageSplash> {
       body: Container(
         color: Colors.white,
         child: Center(
-          child: Image.asset("images/splashlogo.jpg"),
+          child: Image.asset("images/logo.png"),
         ),
       ),
     );

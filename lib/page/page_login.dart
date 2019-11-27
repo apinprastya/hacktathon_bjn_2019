@@ -89,7 +89,7 @@ class _PageLoginState extends State<PageLogin> {
                 children: <Widget>[
                   SizedBox(
                     height: 300,
-                    child: Image.asset("images/splashlogo.jpg"),
+                    child: Image.asset("images/logo.png"),
                   ),
                   TextFormField(
                     decoration:

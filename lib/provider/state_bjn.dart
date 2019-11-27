@@ -36,7 +36,7 @@ class StateBjn with ChangeNotifier {
     saving = true;
     notifyListeners();
     final ref = Firestore.instance.collection('pelatihans').document();
-    await ref.setData(pelatihan.toJson());
+    await ref.setData(pelatihan.copyWith(id: ref.documentID).toJson());
     saving = false;
     notifyListeners();
   }

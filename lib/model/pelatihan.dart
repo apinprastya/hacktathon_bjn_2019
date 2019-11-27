@@ -101,8 +101,10 @@ class PelatihanModel {
       maxParticipant: json['max_participant'] is String
           ? int.parse(json['max_participant'])
           : json['max_participant'],
-      master: PelatihanMasterModel.fromJson(
-          Map<String, dynamic>.from(json['master'])),
+      master: json['master'] == null
+          ? null
+          : PelatihanMasterModel.fromJson(
+              Map<String, dynamic>.from(json['master'])),
       participants: json['participants'] == null
           ? []
           : List<String>.from(json['participants']),
