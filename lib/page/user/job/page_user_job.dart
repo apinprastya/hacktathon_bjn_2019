@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:merdhamel/model/jobs.dart';
+import 'package:merdhamel/page/user/job/page_detail_job.dart';
 import 'package:merdhamel/provider/state_user.dart';
 import 'package:merdhamel/util.dart';
 import 'package:merdhamel/widget/firestore_listview.dart';
@@ -29,7 +30,11 @@ class _PageUserJobState extends State<PageUserJob> {
         itemBuilder: (BuildContext context, DocumentSnapshot document) {
           final d = JobModel.fromJson(document.data);
           return InkWell(
-            onTap: () {},
+            onTap: () {
+              state.jobModel = d;
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (v) => PageDetailJob()));
+            },
             child: Padding(
               padding: EdgeInsets.all(8.0),
               child: Row(
@@ -39,6 +44,8 @@ class _PageUserJobState extends State<PageUserJob> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(d.name),
+                        Text(d.company.name,
+                            style: TextStyle(color: Colors.grey)),
                         Text(d.level, style: TextStyle(color: Colors.grey)),
                       ],
                     ),
