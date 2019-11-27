@@ -7,18 +7,22 @@ class ApScaffold extends StatelessWidget {
   final List<Widget> actions;
   final Widget floatingActionButton;
   final PreferredSizeWidget appBar;
+  final Key key;
 
-  ApScaffold(
-      {@required this.body,
-      @required this.title,
-      this.actions,
-      this.appBar,
-      this.floatingActionButton});
+  ApScaffold({
+    @required this.body,
+    @required this.title,
+    this.key,
+    this.actions,
+    this.appBar,
+    this.floatingActionButton,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: this.body,
+      key: key,
       appBar: appBar == null
           ? AppBar(
               title: Text(this.title),
