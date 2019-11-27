@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:merdhamel/page/user/profile/page_add_edication.dart';
+import 'package:merdhamel/page/user/profile/widget_education.dart';
 import 'package:merdhamel/page/user/profile/widget_info.dart';
 import 'package:merdhamel/provider/state_user.dart';
 import 'package:merdhamel/widget/scaffold.dart';
@@ -49,11 +51,18 @@ class _PageUserProfileState extends State<PageUserProfile> {
             : TabBarView(
                 children: <Widget>[
                   WidgetInfo(),
-                  Text('sekolah'),
+                  WidgetEducation(),
                   Text('pelatihan'),
                   Text('pekerjaan'),
                 ],
               ),
+        floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.add),
+          onPressed: () {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (c) => PageAddEducation()));
+          },
+        ),
       ),
     );
   }

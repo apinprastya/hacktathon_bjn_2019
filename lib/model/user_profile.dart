@@ -11,6 +11,7 @@ class UserProfileModel {
   final String birthPlace;
   final String gender;
   final String maritalStatus;
+  final List<UserEducation> educations;
 
   UserProfileModel({
     this.name,
@@ -23,6 +24,7 @@ class UserProfileModel {
     this.birthDate,
     this.birthPlace,
     this.maritalStatus,
+    this.educations = const [],
   });
 
   factory UserProfileModel.fromDocument(DocumentSnapshot doc) {
@@ -44,6 +46,11 @@ class UserProfileModel {
           ? null
           : (json['birth_date'] as Timestamp).toDate(),
       birthPlace: json['birth_place'],
+      educations: json['educations'] == null
+          ? []
+          : (json['educations'] as List).map((v) {
+              return UserEducation.fromJson(Map<String, dynamic>.from(v));
+            }).toList(),
     );
   }
 
@@ -58,6 +65,7 @@ class UserProfileModel {
     String maritalStatus,
     String birthPlace,
     DateTime birthDate,
+    List<UserEducation> educations,
   }) {
     return UserProfileModel(
       name: name ?? this.name,
@@ -70,6 +78,7 @@ class UserProfileModel {
       maritalStatus: maritalStatus ?? this.maritalStatus,
       birthPlace: birthPlace ?? this.birthPlace,
       birthDate: birthDate ?? this.birthDate,
+      educations: educations ?? this.educations,
     );
   }
 
@@ -85,6 +94,48 @@ class UserProfileModel {
       'marital_status': maritalStatus,
       'birth_place': birthPlace,
       'birth_date': birthDate == null ? null : Timestamp.fromDate(birthDate),
+      'educations':
+          educations.isEmpty ? [] : educations.map((v) => v.toJson()).toList(),
     };
+  }
+}
+
+class UserEducation {
+  final String level; //SD, SMP, SMA, D1, D2, D3, D4, S1, S2, S3
+  final String name;
+  final int year;
+
+  UserEducation({
+    this.name,
+    this.year,
+    this.level,
+  });
+
+  factory UserEducation.fromJson(Map<String, dynamic> json) {
+    return UserEducation(
+      name: json['name'],
+      year: json['year'] is String ? int.parse(json['year']) : json['year'],
+      level: json['level'],
+    );
+  }
+
+  toJson() {
+    return {
+      'name': name,
+      'year': year,
+      'level': level,
+    };
+  }
+
+  copyWith({
+    String name,
+    int year,
+    String level,
+  }) {
+    return UserEducation(
+      name: name ?? this.name,
+      year: year ?? this.year,
+      level: level ?? this.level,
+    );
   }
 }

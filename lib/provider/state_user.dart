@@ -6,6 +6,7 @@ import 'package:merdhamel/model/user_profile.dart';
 class StateUser with ChangeNotifier {
   UserProfileModel userProfile;
   DocumentReference userRef;
+  UserEducation userEducation;
   bool inited = false;
   bool saving = false;
 
@@ -28,5 +29,9 @@ class StateUser with ChangeNotifier {
     await userRef.setData(userProfile.toJson());
     saving = false;
     notifyListeners();
+  }
+
+  selectCurrentEducation(UserEducation edu) {
+    userEducation = edu;
   }
 }
