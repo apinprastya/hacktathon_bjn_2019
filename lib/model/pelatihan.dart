@@ -61,6 +61,7 @@ class PelatihanScoreModel {
 }
 
 class PelatihanModel {
+  final String id;
   final PelatihanMasterModel master;
   final String place;
   final DateTime dateOpen;
@@ -71,6 +72,7 @@ class PelatihanModel {
   final List<String> success;
   final List<PelatihanScoreModel> scores;
   PelatihanModel({
+    this.id,
     this.master,
     this.place,
     this.dateOpen,
@@ -86,6 +88,7 @@ class PelatihanModel {
   }
   factory PelatihanModel.fromJson(Map<String, dynamic> json) {
     return PelatihanModel(
+      id: json['id'],
       date: json['date'] is DateTime
           ? json['date']
           : (json['date'] as Timestamp).toDate(),
@@ -114,6 +117,7 @@ class PelatihanModel {
     );
   }
   copyWith({
+    String id,
     PelatihanMasterModel master,
     String place,
     DateTime dateOpen,
@@ -125,6 +129,7 @@ class PelatihanModel {
     List<PelatihanScoreModel> scores,
   }) {
     return PelatihanModel(
+      id: id ?? this.id,
       master: master ?? this.master,
       place: place ?? this.place,
       dateOpen: dateOpen ?? this.dateOpen,
@@ -139,6 +144,7 @@ class PelatihanModel {
 
   toJson() {
     return {
+      'id': id,
       'date': Timestamp.fromDate(date),
       'date_open': Timestamp.fromDate(dateOpen),
       'date_close': Timestamp.fromDate(dateClose),

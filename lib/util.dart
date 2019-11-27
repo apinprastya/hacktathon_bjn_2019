@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:mime/mime.dart';
 import 'package:http_parser/http_parser.dart';
+import 'package:intl/intl.dart';
 
 class Util {
   static Future<String> uploadFile(String path,
@@ -19,5 +20,9 @@ class Util {
     } catch (e) {
       throw e;
     }
+  }
+
+  static String formatDate(DateTime dt, String format) {
+    return DateFormat(format).format(dt);
   }
 }

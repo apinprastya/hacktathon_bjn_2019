@@ -7,8 +7,8 @@ import 'package:flutter/services.dart';
 import 'package:merdhamel/model/user.dart';
 import 'package:merdhamel/model/usersession.dart';
 import 'package:merdhamel/page/bjn/page_bjn.dart';
+import 'package:merdhamel/page/user/pelatihan/page_pelatihan.dart';
 import 'package:merdhamel/page/company/page_company.dart';
-import 'package:merdhamel/page/user/page_user.dart';
 import 'package:merdhamel/pref.dart';
 
 class PageLogin extends StatefulWidget {
@@ -69,7 +69,7 @@ class _PageLoginState extends State<PageLogin> {
           context, MaterialPageRoute(builder: (c) => PageBjn()));
     if (type == 'user')
       Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (c) => PageUser()));
+          context, MaterialPageRoute(builder: (c) => PagePelatihan()));
     if (type == 'company')
       Navigator.pushReplacement(
           context, MaterialPageRoute(builder: (c) => PageCompany()));

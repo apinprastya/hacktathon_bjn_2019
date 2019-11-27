@@ -4,18 +4,18 @@ import 'package:merdhamel/model/user.dart';
 import 'package:merdhamel/page/bjn/page_bjn.dart';
 import 'package:merdhamel/page/bjn/page_palatihan.dart';
 import 'package:merdhamel/page/page_login.dart';
-import 'package:merdhamel/page/user/page_user.dart';
+import 'package:merdhamel/page/user/pelatihan/page_pelatihan.dart' as pp;
 import 'package:merdhamel/page/user/profile/page_user_profile.dart';
 
 class ApDrawer extends StatelessWidget {
   _user(BuildContext context) {
     return [
       ListTile(
-        leading: Icon(Icons.home),
-        title: Text('Beranda'),
+        leading: Icon(Icons.work),
+        title: Text('Pelatihan'),
         onTap: () {
           Navigator.pushReplacement(
-              context, MaterialPageRoute(builder: (c) => PageUser()));
+              context, MaterialPageRoute(builder: (c) => pp.PagePelatihan()));
         },
       ),
       ListTile(

@@ -8,8 +8,7 @@ import 'package:merdhamel/page/bjn/page_bjn.dart';
 import 'package:merdhamel/page/company/page_company.dart';
 import 'package:merdhamel/page/page_login.dart';
 import 'package:merdhamel/pref.dart';
-
-import 'user/page_user.dart';
+import 'package:merdhamel/page/user/pelatihan/page_pelatihan.dart';
 
 class PageSplash extends StatefulWidget {
   @override
@@ -37,7 +36,7 @@ class _PageSplashState extends State<PageSplash> {
             context, MaterialPageRoute(builder: (c) => PageBjn()));
       if (type == 'user')
         Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (c) => PageUser()));
+            context, MaterialPageRoute(builder: (c) => PagePelatihan()));
       if (type == 'company')
         Navigator.pushReplacement(
             context, MaterialPageRoute(builder: (c) => PageCompany()));
