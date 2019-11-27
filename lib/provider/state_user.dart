@@ -14,6 +14,7 @@ class StateUser with ChangeNotifier {
   bool pelatihanInited = false;
   Stream<QuerySnapshot> pelatihanOpen;
   PelatihanModel pelatihan;
+  Stream<QuerySnapshot> myPelatihan;
 
   Future<void> loadUserProfile() async {
     if (inited) return;
@@ -24,6 +25,10 @@ class StateUser with ChangeNotifier {
       userProfile = UserProfileModel.fromDocument(v);
       notifyListeners();
     });
+    myPelatihan = Firestore.instance
+        .collection('pelatihans')
+        .where('success', arrayContains: UserModel.instance.email)
+        .snapshots();
   }
 
   Future<void> save() async {

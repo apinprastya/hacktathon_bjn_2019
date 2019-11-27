@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:merdhamel/page/user/profile/page_add_edication.dart';
 import 'package:merdhamel/page/user/profile/widget_education.dart';
 import 'package:merdhamel/page/user/profile/widget_info.dart';
+import 'package:merdhamel/page/user/profile/widget_pelatihan.dart';
 import 'package:merdhamel/provider/state_user.dart';
 import 'package:merdhamel/widget/scaffold.dart';
 import 'package:provider/provider.dart';
@@ -52,7 +53,7 @@ class _PageUserProfileState extends State<PageUserProfile> {
                 children: <Widget>[
                   WidgetInfo(),
                   WidgetEducation(),
-                  Text('pelatihan'),
+                  WidgetPelatihanList(),
                   Text('pekerjaan'),
                 ],
               ),
