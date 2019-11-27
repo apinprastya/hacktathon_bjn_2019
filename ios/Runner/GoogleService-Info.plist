@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>1095970964382-a07uk98bbrn32fpvdc3i8j8caog624f3.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.1095970964382-a07uk98bbrn32fpvdc3i8j8caog624f3</string>
+	<key>API_KEY</key>
+	<string>AIzaSyB8M-Ffyn7KtoVkbLGepPodvx1Tq0f6NV8</string>
+	<key>GCM_SENDER_ID</key>
+	<string>1095970964382</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.lekapin.merdhamel</string>
+	<key>PROJECT_ID</key>
+	<string>jordan-training</string>
+	<key>STORAGE_BUCKET</key>
+	<string>jordan-training.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:1095970964382:ios:729cb22ec1a14b92730c8f</string>
+	<key>DATABASE_URL</key>
+	<string>https://jordan-training.firebaseio.com</string>
+</dict>
+</plist>
