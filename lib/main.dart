@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:merdhamel/page/page_splash.dart';
 import 'package:merdhamel/pref.dart';
 import 'package:merdhamel/provider/state_bjn.dart';
+import 'package:merdhamel/provider/state_company.dart';
 import 'package:merdhamel/provider/state_user.dart';
 import 'package:provider/provider.dart';
 
@@ -20,6 +21,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           builder: (c) => StateBjn(),
+        ),
+        ChangeNotifierProvider(
+          builder: (c) => StateCompany(),
         )
       ],
       child: MaterialApp(

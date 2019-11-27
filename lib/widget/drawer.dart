@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:merdhamel/model/user.dart';
 import 'package:merdhamel/page/bjn/page_bjn.dart';
 import 'package:merdhamel/page/bjn/page_palatihan.dart';
+import 'package:merdhamel/page/company/page_company.dart';
+import 'package:merdhamel/page/company/recruitment/page_open.dart';
 import 'package:merdhamel/page/page_login.dart';
 import 'package:merdhamel/page/user/pelatihan/page_pelatihan.dart' as pp;
 import 'package:merdhamel/page/user/profile/page_user_profile.dart';
@@ -51,7 +53,24 @@ class ApDrawer extends StatelessWidget {
   }
 
   _company(BuildContext context) {
-    return [];
+    return [
+      ListTile(
+        leading: Icon(Icons.info),
+        title: Text('Info'),
+        onTap: () {
+          Navigator.pushReplacement(
+              context, MaterialPageRoute(builder: (c) => PageCompany()));
+        },
+      ),
+      ListTile(
+        leading: Icon(Icons.work),
+        title: Text('Lowongan'),
+        onTap: () {
+          Navigator.pushReplacement(context,
+              MaterialPageRoute(builder: (c) => PageOpenRecruitment()));
+        },
+      ),
+    ];
   }
 
   @override
