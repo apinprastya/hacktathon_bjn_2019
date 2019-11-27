@@ -87,6 +87,7 @@ class _WidgetInfoState extends State<WidgetInfo> {
                 validators: [
                   FormBuilderValidators.required(errorText: "Wajib diisi")
                 ],
+                maxLines: null,
                 initialValue: state.userProfile.address,
               ),
               FormBuilderTextField(

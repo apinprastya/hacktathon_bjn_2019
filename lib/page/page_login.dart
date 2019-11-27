@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:merdhamel/model/user.dart';
+import 'package:merdhamel/model/usersession.dart';
 import 'package:merdhamel/page/bjn/page_bjn.dart';
 import 'package:merdhamel/page/company/page_company.dart';
 import 'package:merdhamel/page/user/page_user.dart';
@@ -60,7 +61,9 @@ class _PageLoginState extends State<PageLogin> {
   }
 
   _process(String type, UserModel user) async {
+    await UserSession.instance.init();
     await Pref.pref.setString(Pref.USER, json.encode(user.toJson()));
+    UserModel.instance = user;
     if (type == 'bjn')
       Navigator.pushReplacement(
           context, MaterialPageRoute(builder: (c) => PageBjn()));

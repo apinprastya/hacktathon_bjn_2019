@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:merdhamel/model/user_profile.dart';
+import 'package:merdhamel/model/usersession.dart';
 
 class StateUser with ChangeNotifier {
   UserProfileModel userProfile;
@@ -12,7 +12,7 @@ class StateUser with ChangeNotifier {
 
   Future<void> loadUserProfile() async {
     if (inited) return;
-    final email = (await FirebaseAuth.instance.currentUser()).email;
+    final email = UserSession.instance.user.email;
     inited = true;
     userRef = Firestore.instance.document('profiles/$email');
     userRef.snapshots().listen((v) {

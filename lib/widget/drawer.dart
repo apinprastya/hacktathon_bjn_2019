@@ -1,5 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:merdhamel/model/user.dart';
+import 'package:merdhamel/page/bjn/page_bjn.dart';
+import 'package:merdhamel/page/bjn/page_palatihan.dart';
 import 'package:merdhamel/page/page_login.dart';
 import 'package:merdhamel/page/user/page_user.dart';
 import 'package:merdhamel/page/user/profile/page_user_profile.dart';
@@ -26,8 +29,34 @@ class ApDrawer extends StatelessWidget {
     ];
   }
 
+  _bjn(BuildContext context) {
+    return [
+      ListTile(
+        leading: Icon(Icons.view_day),
+        title: Text('Master pelatihan'),
+        onTap: () {
+          Navigator.pushReplacement(
+              context, MaterialPageRoute(builder: (c) => PageBjn()));
+        },
+      ),
+      ListTile(
+        leading: Icon(Icons.next_week),
+        title: Text('Pelatihan'),
+        onTap: () {
+          Navigator.pushReplacement(
+              context, MaterialPageRoute(builder: (c) => PagePelatihan()));
+        },
+      ),
+    ];
+  }
+
+  _company(BuildContext context) {
+    return [];
+  }
+
   @override
   Widget build(BuildContext context) {
+    final u = UserModel.instance;
     return Drawer(
       child: Column(
         children: <Widget>[
@@ -56,7 +85,9 @@ class ApDrawer extends StatelessWidget {
           ),
           Expanded(
             child: ListView(
-              children: _user(context),
+              children: u.type == 'user'
+                  ? _user(context)
+                  : u.type == "bjn" ? _bjn(context) : _company(context),
             ),
           ),
           ListTile(
