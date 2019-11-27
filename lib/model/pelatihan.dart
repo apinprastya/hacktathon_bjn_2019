@@ -12,6 +12,7 @@ class PelatihanMasterModel {
   }
 
   factory PelatihanMasterModel.fromJson(Map<String, dynamic> json) {
+    if (json == null) return null;
     return PelatihanMasterModel(
       id: json['id'],
       name: json['name'],
@@ -51,6 +52,12 @@ class PelatihanScoreModel {
   factory PelatihanScoreModel.fromJson(Map<String, dynamic> json) {
     return PelatihanScoreModel(email: json['email'], score: json['score']);
   }
+  toJson() {
+    return {
+      'email': email,
+      'score': score,
+    };
+  }
 }
 
 class PelatihanModel {
@@ -59,6 +66,7 @@ class PelatihanModel {
   final DateTime dateOpen;
   final DateTime dateClose;
   final DateTime date;
+  final int maxParticipant;
   final List<String> participants;
   final List<String> success;
   final List<PelatihanScoreModel> scores;
@@ -67,6 +75,7 @@ class PelatihanModel {
     this.place,
     this.dateOpen,
     this.dateClose,
+    this.maxParticipant,
     this.date,
     this.participants,
     this.success,
@@ -77,14 +86,67 @@ class PelatihanModel {
   }
   factory PelatihanModel.fromJson(Map<String, dynamic> json) {
     return PelatihanModel(
-      date: (json['date'] as Timestamp).toDate(),
-      dateClose: (json['date_close'] as Timestamp).toDate(),
-      dateOpen: (json['date_open'] as Timestamp).toDate(),
-      master: PelatihanMasterModel.fromJson(json['master']),
-      participants: List<String>.from(json['participants']),
-      success: List<String>.from(json['success']),
-      scores: (json['scores'] as List).map(
-          (v) => PelatihanScoreModel.fromJson(Map<String, dynamic>.from(v))),
+      date: json['date'] is DateTime
+          ? json['date']
+          : (json['date'] as Timestamp).toDate(),
+      dateClose: json['date_close'] is DateTime
+          ? json['date_close']
+          : (json['date_close'] as Timestamp).toDate(),
+      dateOpen: json['date_open'] is DateTime
+          ? json['date_open']
+          : (json['date_open'] as Timestamp).toDate(),
+      maxParticipant: json['max_participant'] is String
+          ? int.parse(json['max_participant'])
+          : json['max_participant'],
+      master: PelatihanMasterModel.fromJson(
+          Map<String, dynamic>.from(json['master'])),
+      participants: json['participants'] == null
+          ? []
+          : List<String>.from(json['participants']),
+      success:
+          json['success'] == null ? [] : List<String>.from(json['success']),
+      scores: json['scores'] == null
+          ? []
+          : (json['scores'] as List)
+              .map((v) =>
+                  PelatihanScoreModel.fromJson(Map<String, dynamic>.from(v)))
+              .toList(),
     );
+  }
+  copyWith({
+    PelatihanMasterModel master,
+    String place,
+    DateTime dateOpen,
+    DateTime dateClose,
+    DateTime date,
+    int maxParticipant,
+    List<String> participants,
+    List<String> success,
+    List<PelatihanScoreModel> scores,
+  }) {
+    return PelatihanModel(
+      master: master ?? this.master,
+      place: place ?? this.place,
+      dateOpen: dateOpen ?? this.dateOpen,
+      dateClose: dateClose ?? this.dateClose,
+      date: date ?? this.date,
+      maxParticipant: maxParticipant ?? this.maxParticipant,
+      participants: participants ?? this.participants,
+      success: success ?? this.success,
+      scores: scores ?? this.scores,
+    );
+  }
+
+  toJson() {
+    return {
+      'date': Timestamp.fromDate(date),
+      'date_open': Timestamp.fromDate(dateOpen),
+      'date_close': Timestamp.fromDate(dateClose),
+      'max_participant': maxParticipant,
+      'master': master.toJson(),
+      'participants': participants,
+      'success': success,
+      'scores': scores.map((v) => v.toJson()).toList(),
+    };
   }
 }

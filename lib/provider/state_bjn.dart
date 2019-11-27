@@ -6,7 +6,10 @@ class StateBjn with ChangeNotifier {
   bool saving = false;
   bool init = false;
   Stream<QuerySnapshot> masterSnapshot;
+  Stream<QuerySnapshot> pelatihanSnapshot;
   PelatihanMasterModel pelatihanMaster = PelatihanMasterModel();
+  PelatihanModel pelatihan;
+  bool pelatihanInit = false;
 
   Future<void> initMaster() async {
     if (init) return;
@@ -14,11 +17,26 @@ class StateBjn with ChangeNotifier {
     masterSnapshot = Firestore.instance.collection('masters').snapshots();
   }
 
-  saveMaster() async {
+  Future<void> saveMaster() async {
     saving = true;
     notifyListeners();
     final ref = Firestore.instance.collection('masters').document();
     await ref.setData(pelatihanMaster.copyWith(id: ref.documentID).toJson());
+    saving = false;
+    notifyListeners();
+  }
+
+  Future<void> initPelatihan() async {
+    if (pelatihanInit) return;
+    pelatihanInit = true;
+    pelatihanSnapshot = Firestore.instance.collection('pelatihans').snapshots();
+  }
+
+  Future<void> savePelatihan() async {
+    saving = true;
+    notifyListeners();
+    final ref = Firestore.instance.collection('pelatihans').document();
+    await ref.setData(pelatihan.toJson());
     saving = false;
     notifyListeners();
   }
