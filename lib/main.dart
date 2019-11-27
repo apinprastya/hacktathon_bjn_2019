@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Merdhamel',
         theme: ThemeData(
-          primarySwatch: Colors.indigo,
+          primarySwatch: Colors.teal,
         ),
         home: PageSplash(),
       ),
